@@ -10,7 +10,7 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * 可以被批量赋值的属性。
      *
      * @var array
      */
@@ -26,4 +26,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //一个用户可以有多篇文章
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

@@ -27,8 +27,8 @@
                     <li><a class="menu-item" href="#">归档</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right blog-navbar">
-                    <li><a href="#">登录</a></li>
-                    <li><a href="#">注册</a></li>
+                    <li><a href="{{ url('login') }}">登录</a></li>
+                    <li><a href="{{ url('register') }}">注册</a></li>
                 </ul>
                 <form class="navbar-form navbar-right" role="search" method="get" action="">
                     <input type="text" class="form-control" name="q" placeholder="搜索" required>

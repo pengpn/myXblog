@@ -1,18 +1,29 @@
 <!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
+<html lang="Zh_cn" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="author" content="{{ $author or '' }}">
+    <title>@yield('title') {{ $site_title or '' }} </title>
+    <meta name="keywords" content="@yield('keywords') {{ $site_keywords or '' }}">
+    <meta name="description" content="@yield('description') {{ $site_description or '' }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $site_title or '' }}">
+    <meta property="og:site_name" content="{{ $site_title or '' }}">
+    <meta property="og:description" content="{{ $site_description or '' }}">
+    <meta name="theme-color" content="#52768e">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    @if(isset($site_css) && $site_css)
+        <link rel="stylesheet" href="{{ $site_css }}">
+    @else
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @endif
+    @yield('css')
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -20,68 +31,21 @@
         ]) !!};
     </script>
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        @yield('content')
+<body id="body">
+@include('layouts.header')
+<div id="content-wrap">
+    <div class="container">
+{{--        @include('partials.errors')--}}
+{{--        @include('partials.success')--}}
     </div>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('content')
+</div>
+@include('layouts.footer')
+@if(isset($site_js) && $site_js)
+    <script src="{{ $site_js }}"></script>
+@else
+    <script src="{{ mix('js/app.js') }}"></script>
+@endif
+@yield('script')
 </body>
 </html>

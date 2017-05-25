@@ -26,6 +26,19 @@ class Post extends Model
           'title','description','slug','category_id','user_id','content','published_at','status','html_content',
     ];
 
+    const selectArrayWithOutContent = [
+        'id',
+        'user_id',
+        'category_id',
+        'title',
+        'slug',
+        'view_count',
+        'description',
+        'updated_at',
+        'created_at',
+        'status'
+    ];
+
     //一个文章只可以属于一个用户 获取这篇文章的用户模型。
     public function user()
     {

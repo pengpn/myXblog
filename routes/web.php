@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Site route //指定路由名称到控制器动作
+Route::get('/',['uses' => 'HomeController@index', 'as' => 'index']);
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+

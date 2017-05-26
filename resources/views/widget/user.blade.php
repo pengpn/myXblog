@@ -12,10 +12,19 @@
     <div class="widget-user-image">
         <img class="img-circle" src="{{ $avatar or 'https://raw.githubusercontent.com/lufficc/images/master/Xblog/logo.png' }}" alt="User Avatar">
     </div>
-    {{--<div class="widget-user-footer">--}}
-        {{--<div class="row">--}}
-
-        {{--</div>--}}
-    {{--</div>--}}
+    <div class="widget-user-footer">
+        <div class="row">
+            <?php $count = count(config('social'))?>
+            @foreach(config('social') as $key => $value)
+                <div class="col-xs-{{ intval( 12 / $count) }} border-right center-block ">
+                    <div class="description-block">
+                        <a href="{{ $value['url'] }}" title="{{ ucfirst($key) }}" class="description-header">
+                            <i class="{{ $value['fa'].' fa-lg' }}" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
 
 </div>

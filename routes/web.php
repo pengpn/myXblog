@@ -19,4 +19,5 @@ Route::get('/',['uses' => 'HomeController@index', 'as' => 'index']);
 
 //Post
 Route::get('/blog',['uses' => 'PostController@index', 'as' => 'post.index']);
+Route::get('/blog/{id}',['uses' => 'PostController@show','as' => 'post.show']);
 

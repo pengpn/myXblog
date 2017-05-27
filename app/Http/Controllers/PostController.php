@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::select(Post::selectArrayWithOutContent)->paginate(self::PAGE_SIZE);
-        return view('post.index',compact('posts'));
+        $categories = Category::all();
+        return view('post.index',compact('posts','categories'));
     }
 
     public function show($id)

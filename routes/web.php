@@ -21,3 +21,9 @@ Route::get('/',['uses' => 'HomeController@index', 'as' => 'index']);
 Route::get('/blog',['uses' => 'PostController@index', 'as' => 'post.index']);
 Route::get('/blog/{id}',['uses' => 'PostController@show','as' => 'post.show']);
 
+
+//category
+Route::get('/category/{name}',['uses' => 'CategoryController@show','as' => 'category.show']);
+
+//tag
+Route::get('/tag/{name}',['uses' => 'TagController@show', 'as' => 'tag.show']);

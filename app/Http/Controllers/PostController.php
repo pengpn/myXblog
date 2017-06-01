@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,7 +14,8 @@ class PostController extends Controller
     {
         $posts = Post::select(Post::selectArrayWithOutContent)->paginate(self::PAGE_SIZE);
         $categories = Category::all();
-        return view('post.index',compact('posts','categories'));
+        $tags = Tag::all();
+        return view('post.index',compact('posts','categories','tags'));
     }
 
     public function show($id)

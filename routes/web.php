@@ -27,3 +27,7 @@ Route::get('/category/{name}',['uses' => 'CategoryController@show','as' => 'cate
 
 //tag
 Route::get('/tag/{name}',['uses' => 'TagController@show', 'as' => 'tag.show']);
+
+
+//user
+Route::get('/user/{name}',['uses' => 'UserController@show','as' => 'user.show']);

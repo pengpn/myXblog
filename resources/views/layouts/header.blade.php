@@ -20,15 +20,43 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="#" class="navbar-brand">blog首页</a>
+                <a href="{{ route('post.index') }}" class="navbar-brand">blog首页</a>
             </div>
             <div class="collapse navbar-collapse fix-top" id="blog-navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a class="menu-item" href="#">归档</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right blog-navbar">
+                    @if(auth()->check())
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <?php
+                                $user = auth()->user();
+                                $unreadNotificationsCount = $user->unreadNotifications->count();
+                                ?>
+                                @if($unreadNotificationsCount)
+                                    <span class="badge required">{{ $unreadNotificationsCount }}</span>
+                                @endif
+                                {{ $user->name }}
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('user.show',auth()->user()->name) }}">个人中心</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        退出登陆
+                                    </a>
+                                </li>
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </ul>
+                        </li>
+                    @else
                     <li><a href="{{ url('login') }}">登录</a></li>
                     <li><a href="{{ url('register') }}">注册</a></li>
+                    @endif
                 </ul>
                 <form class="navbar-form navbar-right" role="search" method="get" action="">
                     <input type="text" class="form-control" name="q" placeholder="搜索" required>

@@ -13,8 +13,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::select(Post::selectArrayWithOutContent)->paginate(self::PAGE_SIZE);
-        $categories = Category::all();
-        $tags = Tag::all();
+        $categories = Category::withCount('posts')->get();
+        $tags = Tag::withCount('posts')->get();
         return view('post.index',compact('posts','categories','tags'));
     }
 

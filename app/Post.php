@@ -51,6 +51,7 @@ class Post extends Model
         return $this->morphMany(Comment::class,'commentable');
     }
 
+    //获取该文章下所属的分类模型。
     public function category()
     {
         return $this->belongsTo(Category::class);

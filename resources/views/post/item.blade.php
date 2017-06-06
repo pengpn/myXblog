@@ -14,6 +14,9 @@
             <span class="post-category">
                 |&nbsp;
                 <i class="fa fa-folder-o"></i>
+                <a href="#">
+                    {{ $post->category->name }}
+                </a>
             </span>
             <span class="post-comments-count">
                 |&nbsp;

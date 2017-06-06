@@ -14,7 +14,7 @@ class PostController extends Controller
     {
         $posts = Post::select(Post::selectArrayWithOutContent)->with('category')->paginate(self::PAGE_SIZE);
         $categories = Category::withCount('posts')->get();
-        $tags = Tag::withCount('posts')->get();
+        $tags = Tag::with('posts')->withCount('posts')->get();
 
         return view('post.index',compact('posts','categories','tags'));
     }

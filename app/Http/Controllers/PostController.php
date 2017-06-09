@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Comment;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
@@ -21,7 +22,14 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $post = Post::findOrFail($id);
-        return view('post.show',compact('post'));
+        $post = Post::with('category','tags')->withCount('comments')->findOrFail($id);
+        $recommendedPosts = Post::where('category_id',$post->category->id)
+                            ->where('id','<>',$post->id)
+                            ->orderBy('view_count','desc')
+                            ->select(Post::selectArrayWithOutContent)
+                            ->limit(5)
+                            ->get();
+        $comments = $post->comments;
+        return view('post.show',compact('post','recommendedPosts','comments'));
     }
 }

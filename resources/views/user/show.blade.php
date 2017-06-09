@@ -19,7 +19,11 @@
                     <img style="background-color: #607D8B" class="img-circle" src="{{ $user->avatar  }}" alt="User Avatar">
                 </div>
                 <div class="widget-user-body mt-30">
-
+                    @can('manager',$user)
+                        @include('user.show_owner',$user)
+                    @else
+                        @include('user.show_visiter',$user)
+                    @endcan
                 </div>
             </div>
         </div>

@@ -9,7 +9,12 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     const PAGE_SIZE = 7;
-    //
+
+    public function index()
+    {
+        return view('category.index');
+    }
+
     public function show($categoryName)
     {
         $category = Category::where('name',$categoryName)->first();

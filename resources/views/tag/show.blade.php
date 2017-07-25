@@ -19,9 +19,9 @@
                     @endif
                 @endif
             </div>
-            {{--<div class="col-md-4">--}}
-                {{--@include('layouts.widgets')--}}
-            {{--</div>--}}
+            <div class="col-md-4">
+                @include('layouts.widgets')
+            </div>
         </div>
     </div>
 @endsection

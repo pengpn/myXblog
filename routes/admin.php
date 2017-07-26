@@ -10,4 +10,20 @@
 |
 */
 
+/**
+ * admin url
+ */
 Route::get('/',['uses' => 'AdminController@index','as' => 'admin.index']);
+
+
+/**
+ * admin uri
+ */
+Route::get('/posts',['uses' => 'AdminController@posts','as' => 'admin.posts']);
+Route::get('/comments', ['uses' => 'AdminController@comments', 'as' => 'admin.comments']);
+Route::get('/tags', ['uses' => 'AdminController@tags', 'as' => 'admin.tags']);
+Route::get('/users', ['uses' => 'AdminController@users', 'as' => 'admin.users']);
+//Route::get('/pages', ['uses' => 'AdminController@pages', 'as' => 'admin.pages']);
+Route::get('/categories', ['uses' => 'AdminController@categories', 'as' => 'admin.categories']);
+//Route::get('/images', ['uses' => 'ImageController@images', 'as' => 'admin.images']);
+//Route::get('/files', ['uses' => 'FileController@files', 'as' => 'admin.files']);

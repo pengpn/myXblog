@@ -13,7 +13,7 @@
             </div>
             <div class="collapse navbar-collapse" id="blog-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ route('post.create') }}">写作</a></li>
+{{--                    <li><a href="{{ route('post.create') }}">写作</a></li>--}}
 {{--                    <li><a href="{{ route('admin.images') }}">图片</a></li>--}}
 {{--                    <li><a href="{{ route('admin.files') }}">文件</a></li>--}}
 {{--                    <li><a href="{{ route('admin.settings') }}">设置</a></li>--}}
